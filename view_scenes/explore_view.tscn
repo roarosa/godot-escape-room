@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbm87omb7wy4s"]
+
+[ext_resource type="Theme" uid="uid://buoif4vxuf2sm" path="res://main_theme.tres" id="1_4lbui"]
+[ext_resource type="Script" path="res://scripts/explore_viewport.gd" id="1_r3etk"]
+[ext_resource type="PackedScene" uid="uid://bnb1fvw0dkcqw" path="res://explore_scene.tscn" id="3_ev8ej"]
+[ext_resource type="Script" path="res://scripts/observation_display.gd" id="4_rr68e"]
+
+[node name="ExploreView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_4lbui")
+
+[node name="ExploreView" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ExploreView"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+script = ExtResource("1_r3etk")
+
+[node name="SubViewport" type="SubViewport" parent="ExploreView/SubViewportContainer"]
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(1152, 444)
+render_target_update_mode = 4
+
+[node name="ExploreScene" parent="ExploreView/SubViewportContainer/SubViewport" instance=ExtResource("3_ev8ej")]
+
+[node name="Panel" type="Panel" parent="ExploreView"]
+custom_minimum_size = Vector2(2.08165e-12, 200)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ExploreView/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -46.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ExploreView/Panel/MarginContainer"]
+custom_minimum_size = Vector2(100, 2.08165e-12)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]...[/center]"
+fit_content = true
+autowrap_mode = 1
+script = ExtResource("4_rr68e")

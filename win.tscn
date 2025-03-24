@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://ppudoy68qpoh"]
+
+[ext_resource type="Theme" uid="uid://buoif4vxuf2sm" path="res://main_theme.tres" id="1_uryys"]
+[ext_resource type="Script" path="res://scripts/win_screen.gd" id="2_7dp4f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exmeo"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_uryys")
+script = ExtResource("2_7dp4f")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_exmeo")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "You made it out alive!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer2/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Somehow..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "[Click to exit]"
+horizontal_alignment = 1
+vertical_alignment = 1

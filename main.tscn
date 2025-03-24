@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1wg8rcduyhgr"]
+
+[ext_resource type="Texture2D" uid="uid://c0firychyjieg" path="res://icons/menu/eye.svg" id="1_5puwe"]
+[ext_resource type="Theme" uid="uid://buoif4vxuf2sm" path="res://main_theme.tres" id="1_16eqe"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_uf8cg"]
+[ext_resource type="Texture2D" uid="uid://ubqaxbvyrnju" path="res://icons/menu/package.svg" id="2_uw5pc"]
+[ext_resource type="Texture2D" uid="uid://ctny308t7ryym" path="res://icons/menu/mail.svg" id="3_kf8kl"]
+[ext_resource type="Shader" path="res://recolor.gdshader" id="4_r1o7h"]
+[ext_resource type="Script" path="res://scripts/content.gd" id="5_rx8oa"]
+[ext_resource type="PackedScene" uid="uid://bbm87omb7wy4s" path="res://view_scenes/explore_view.tscn" id="8_n50rp"]
+[ext_resource type="PackedScene" uid="uid://b685kx2qve4if" path="res://view_scenes/letters_view.tscn" id="9_ym0j4"]
+[ext_resource type="PackedScene" uid="uid://ds8xhrksh8prf" path="res://view_scenes/inventory_view.tscn" id="10_ouskm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fcmp1"]
+shader = ExtResource("4_r1o7h")
+shader_parameter/color = Vector4(1, 1, 1, 2.08165e-12)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_16eqe")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="Menu" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+script = ExtResource("1_uf8cg")
+
+[node name="Explore" type="TextureButton" parent="VBoxContainer/PanelContainer/MarginContainer/Menu"]
+material = SubResource("ShaderMaterial_fcmp1")
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture_normal = ExtResource("1_5puwe")
+stretch_mode = 5
+
+[node name="Inventory" type="TextureButton" parent="VBoxContainer/PanelContainer/MarginContainer/Menu"]
+material = SubResource("ShaderMaterial_fcmp1")
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture_normal = ExtResource("2_uw5pc")
+stretch_mode = 5
+
+[node name="Letters" type="TextureButton" parent="VBoxContainer/PanelContainer/MarginContainer/Menu"]
+visible = false
+material = SubResource("ShaderMaterial_fcmp1")
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture_normal = ExtResource("3_kf8kl")
+stretch_mode = 5
+
+[node name="Content" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("5_rx8oa")
+
+[node name="ExploreView" parent="VBoxContainer/Content" instance=ExtResource("8_n50rp")]
+layout_mode = 2
+
+[node name="LettersView" parent="VBoxContainer/Content" instance=ExtResource("9_ym0j4")]
+visible = false
+layout_mode = 2
+
+[node name="InventoryView" parent="VBoxContainer/Content" instance=ExtResource("10_ouskm")]
+visible = false
+layout_mode = 2

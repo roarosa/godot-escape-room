@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://bnb1fvw0dkcqw"]
+
+[ext_resource type="Script" path="res://scripts/explore_scene.gd" id="1_24nfh"]
+[ext_resource type="Texture2D" uid="uid://dfjv0ew11yfwa" path="res://assets/pH64_doors_and_windows_OGA_alpha.png" id="1_t68u0"]
+[ext_resource type="Script" path="res://scripts/explore_item.gd" id="2_hu51n"]
+[ext_resource type="Texture2D" uid="uid://nrtexpnhkivt" path="res://assets/pH64_furniture_OGA_alpha.png" id="3_ca6ho"]
+[ext_resource type="Script" path="res://scripts/click_handlers/door.gd" id="3_x76as"]
+[ext_resource type="Script" path="res://scripts/art.gd" id="5_m5s8y"]
+[ext_resource type="Script" path="res://scripts/click_handlers/drawer.gd" id="6_v8j6o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_056p0"]
+size = Vector2(27, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqxq0"]
+size = Vector2(250, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qb3ba"]
+size = Vector2(18, 18.2)
+
+[node name="ExploreScene" type="Node2D"]
+script = ExtResource("1_24nfh")
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2(557, 224)
+scale = Vector2(5, 5)
+script = ExtResource("2_hu51n")
+description = "Where does this lead?"
+click_script = ExtResource("3_x76as")
+
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+texture = ExtResource("1_t68u0")
+region_enabled = true
+region_rect = Rect2(265, 13, 29, 53)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+shape = SubResource("RectangleShape2D_056p0")
+
+[node name="Couch" type="Area2D" parent="."]
+position = Vector2(902, 323)
+scale = Vector2(5, 5)
+script = ExtResource("2_hu51n")
+description = "I could use a nap."
+clicked_description = "I'll have time to sleep later."
+
+[node name="Sprite2D" type="Sprite2D" parent="Couch"]
+texture = ExtResource("3_ca6ho")
+region_enabled = true
+region_rect = Rect2(351.031, 100.398, 49.1894, 27.8496)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Couch"]
+polygon = PackedVector2Array(-24.6, -9.8, 23, -9.8, 19.2, 9.2, -19.6, 9.8)
+
+[node name="Painting" type="Area2D" parent="."]
+position = Vector2(255, 175)
+script = ExtResource("2_hu51n")
+description = "I don't think I've ever seen something so beautiful."
+
+[node name="Node2D" type="Node2D" parent="Painting"]
+position = Vector2(-125, -75)
+script = ExtResource("5_m5s8y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Painting"]
+shape = SubResource("RectangleShape2D_fqxq0")
+
+[node name="Drawer" type="Area2D" parent="."]
+position = Vector2(717, 323)
+scale = Vector2(5, 5)
+script = ExtResource("2_hu51n")
+description = "Always have a junk drawer."
+click_script = ExtResource("6_v8j6o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Drawer"]
+texture = ExtResource("3_ca6ho")
+region_enabled = true
+region_rect = Rect2(310.452, 3.01032, 19.0131, 18.3876)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Drawer"]
+position = Vector2(-1.52588e-05, -0.100014)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_qb3ba")
